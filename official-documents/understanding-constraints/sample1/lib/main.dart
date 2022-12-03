@@ -13,103 +13,347 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        body: Example(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class Example1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return Container(color: Colors.red);
+  }
+}
+
+// The red Container wants to be 100 × 100, but it can’t,
+// because the screen forces it to be exactly the same size as the screen.
+// cf. https://docs.flutter.dev/development/ui/layout/constraints#:~:text=paints%20it%20red.-,Example%202,-content_copy
+class Example2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 100,
+      color: Colors.red,
+    );
+  }
+}
+
+// The screen forces the Center to be exactly the same size as the screen,
+// so the Center fills the screen.
+//
+// The Center tells the Container that it can be any size it wants,
+// but not bigger than the screen. Now the Container can indeed be 100 × 100.
+class Example3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 100,
+        height: 100,
+        color: Colors.red,
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+    );
+  }
+}
+
+class Example4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Container(
+        width: 100,
+        height: 100,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+class Example5 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+// Since the red Container has no size but has a child,
+// it decides it wants to be the same size as its child.
+class Example7 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: Colors.red,
+        child: Container(
+          width: 30,
+          height: 30,
+          color: Colors.green,
+        ),
+      ),
+    );
+  }
+}
+
+// The red Container sizes itself to its children’s size,
+// but it takes its own padding into consideration.
+// So it is also 30 × 30 plus padding.
+class Example8 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: Colors.red,
+        padding: const EdgeInsets.all(20),
+        child: Container(
+          width: 30,
+          height: 30,
+          color: Colors.green,
+        ),
+      ),
+    );
+  }
+}
+
+// The ConstrainedBox only imposes additional constraints
+// from those it receives from its parent.
+class Example9 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minWidth: 70,
+        maxWidth: 140,
+        minHeight: 70,
+        maxHeight: 140,
+      ),
+      child: Container(
+        color: Colors.red,
+        width: 10,
+        height: 10,
+      ),
+    );
+  }
+}
+
+// Now, Center allows ConstrainedBox to be any size up to the screen size.
+class Example10 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          minWidth: 70,
+          maxWidth: 140,
+          minHeight: 70,
+          maxHeight: 140,
+        ),
+        child: Container(
+          color: Colors.red,
+          width: 10,
+          height: 10,
+        ),
+      ),
+    );
+  }
+}
+
+class Example14 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return UnconstrainedBox(
+      child: Container(
+        color: Colors.red,
+        width: 4000,
+        height: 100,
+      ),
+    );
+  }
+}
+
+// OverflowBox is similar to UnconstrainedBox;
+// the difference is that it won’t display any warnings
+// if the child doesn’t fit the space.
+class Example15 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return OverflowBox(
+      minWidth: 0,
+      maxHeight: double.infinity,
+      minHeight: 0,
+      maxWidth: double.infinity,
+      child: Container(
+        color: Colors.red,
+        width: 4000,
+        height: 100,
+      ),
+    );
+  }
+}
+
+class Example18 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      child: Text("Some Example Text"),
+    );
+  }
+}
+
+// FittedBox が screen によって引っ張られなくなったので Text の
+// サイズが採用されるようになった。
+class Example19 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: FittedBox(
+        child: Text('Some Example Text'),
+      ),
+    );
+  }
+}
+
+// FittedBox tries to size itself to the Text,
+// but it can’t be bigger than the screen.
+// It then assumes the screen size,
+// and resizes Text so that it fits the screen, too.
+class Example20 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: FittedBox(
+        child: Text(
+          'This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line.',
+        ),
+      ),
+    );
+  }
+}
+
+class Example21 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        'This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line.',
+      ),
+    );
+  }
+}
+
+class Example23 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(color: Colors.red, child: const Text("Hello!")),
+        Container(color: Colors.green, child: const Text("Goodbye!")),
+      ],
+    );
+  }
+}
+
+// In other words, once you use Expanded,
+// the original child’s width becomes irrelevant, and is ignored.
+class Example25 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            color: Colors.red,
+            child: const Text(
+              'This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line.',
+            ),
+          ),
+        ),
+        Container(
+          color: Colors.green,
+          child: const Text("Hello!!"),
+        )
+      ],
+    );
+  }
+}
+
+class Example26 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            color: Colors.red,
+            child: const Text(
+              'This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line.',
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.green,
+            child: const Text('Hello!!'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// The only difference if you use Flexible instead of Expanded,
+// is that Flexible lets its child have the same
+// or smaller width than the Flexible itself,
+// while Expanded forces its child to have the exact same width of the Expanded.
+class Example27 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          child: Container(
+            color: Colors.red,
+            child: const Text(
+              'This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line. This is some very very very large text that is too big to fit a regular screen in a single line.',
+            ),
+          ),
+        ),
+        Flexible(
+          child: Container(
+            color: Colors.green,
+            child: const Text('Hello!!'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// 28
+class Example extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.expand(
+      child: Container(
+        color: Colors.blue,
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+          children: const [
+            Text('Hello'),
+            Text('World'),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
