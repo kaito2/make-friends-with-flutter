@@ -9,18 +9,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(color: Colors.white),
-      child: const Center(
-        child: Text(
-          'Hello World',
-          textDirection: TextDirection.ltr,
-          style: TextStyle(
-            fontSize: 32,
-            color: Colors.black87,
+    return MaterialApp(
+      title: 'Flutter layout demo',
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Flutter layout demo'),
           ),
-        ),
-      ),
+          body: Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.star, color: Colors.green[500]),
+                Icon(Icons.star, color: Colors.green[500]),
+                Icon(Icons.star, color: Colors.green[500]),
+                const Icon(Icons.star, color: Colors.black),
+                const Icon(Icons.star, color: Colors.black),
+              ],
+            ),
+          )),
     );
   }
 }
