@@ -15,9 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        body: Example(),
-      ),
+      home: Example(),
     );
   }
 }
@@ -341,7 +339,7 @@ class Example27 extends StatelessWidget {
 }
 
 // 28
-class Example extends StatelessWidget {
+class Example28 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
@@ -355,5 +353,18 @@ class Example extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class Example extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      Container(
+        color: Colors.teal,
+        width: 100,
+        height: 100,
+      ),
+    ]);
   }
 }
