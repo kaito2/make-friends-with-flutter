@@ -10,11 +10,13 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) => const HomePage(),
+      routes: [
+        GoRoute(
+          path: 'settings',
+          builder: (context, state) => SettingsPage(),
+        )
+      ],
     ),
-    GoRoute(
-      path: '/settings',
-      builder: (context, state) => SettingsPage(),
-    )
   ],
 );
 
