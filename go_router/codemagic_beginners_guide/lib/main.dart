@@ -20,6 +20,7 @@ final GoRouter _router = GoRouter(
       ],
     ),
   ],
+  errorBuilder: (context, state) => const ErrorScreen(),
 );
 
 class MyApp extends StatelessWidget {
@@ -73,6 +74,32 @@ class SettingsPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () => context.go('/'),
               child: const Text('Go to homepage'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ErrorScreen extends StatelessWidget {
+  const ErrorScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        title: const Text('Error Screen'),
+        backgroundColor: Colors.red,
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            const Text('Some error occurred'),
+            ElevatedButton(
+              onPressed: () => context.go('/'),
+              child: const Text('Go to home page'),
             ),
           ],
         ),
