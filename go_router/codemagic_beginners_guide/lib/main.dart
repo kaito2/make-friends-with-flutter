@@ -12,8 +12,10 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => const HomePage(),
       routes: [
         GoRoute(
-          path: 'settings',
-          builder: (context, state) => SettingsPage(),
+          path: 'settings/:name',
+          builder: (context, state) => SettingsPage(
+            state.params['name']!,
+          ),
         )
       ],
     ),
@@ -45,7 +47,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           child: const Text('hey'),
-          onPressed: () => context.go('/settings'),
+          onPressed: () => context.go('/settings/magic'),
         ),
       ),
     );
@@ -53,6 +55,10 @@ class HomePage extends StatelessWidget {
 }
 
 class SettingsPage extends StatelessWidget {
+  final String name;
+
+  const SettingsPage(this.name, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,9 +67,14 @@ class SettingsPage extends StatelessWidget {
         title: const Text('Settings'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () => context.go('/'),
-          child: const Text('Go to homepage'),
+        child: Column(
+          children: [
+            Text(name),
+            ElevatedButton(
+              onPressed: () => context.go('/'),
+              child: const Text('Go to homepage'),
+            ),
+          ],
         ),
       ),
     );
