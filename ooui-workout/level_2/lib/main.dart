@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:level_2/components/navigation_bar.dart';
+import 'package:level_2/member_collection_screen.dart';
 import 'package:level_2/team_collection_screen.dart';
 
 void main() {
@@ -17,7 +18,11 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // builder: (_, child) => AppView(child: child!),
-      home: const SelectionArea(child: AppView(child: HomeScreen())),
+      home: const SelectionArea(
+        child: AppView(
+          child: MemberCollectionScreen(),
+        ),
+      ),
     );
   }
 }
