@@ -16,7 +16,7 @@ class MemberCollectionScreen extends StatelessWidget {
           Row(
             children: [
               const Text(
-                'チーム',
+                '社員',
                 style: TextStyle(fontSize: 30),
               ),
               Spacer(),
@@ -26,29 +26,78 @@ class MemberCollectionScreen extends StatelessWidget {
               )
             ],
           ),
-          const MemberListItem(
-            name: "野坂祐介",
-            teamName: "ファイナンス",
-            isOnline: true,
-          ),
-          const MemberListItem(
-            name: "横田龍之介",
-            teamName: "デザイン",
-            isOnline: true,
-          ),
-          const MemberListItem(
-            name: "城之内恵美",
-            teamName: "デザイン",
-            isOnline: true,
-          ),
-          const MemberListItem(
-            name: "西村紗英",
-            teamName: "マーケティング",
-            isOnline: true,
-          )
+          MemberList(),
         ],
       ),
     );
+  }
+}
+
+class MemberList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      const MemberListItem(
+        name: "野坂祐介",
+        teamName: "ファイナンス",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "横田龍之介",
+        teamName: "デザイン",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "城之内恵美",
+        teamName: "デザイン",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "西村紗英",
+        teamName: "マーケティング",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "野坂祐介",
+        teamName: "ファイナンス",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "横田龍之介",
+        teamName: "デザイン",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "城之内恵美",
+        teamName: "デザイン",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "西村紗英",
+        teamName: "マーケティング",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "野坂祐介",
+        teamName: "ファイナンス",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "横田龍之介",
+        teamName: "デザイン",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "城之内恵美",
+        teamName: "デザイン",
+        isOnline: true,
+      ),
+      const MemberListItem(
+        name: "西村紗英",
+        teamName: "マーケティング",
+        isOnline: true,
+      )
+    ]);
   }
 }
 
