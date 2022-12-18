@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // builder: (_, child) => AppView(child: child!),
-      home: SelectionArea(
+      home: const SelectionArea(
         child: AppView(
           child: TeamSingleScreen(),
         ),

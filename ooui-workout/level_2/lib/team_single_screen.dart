@@ -8,7 +8,7 @@ class TeamSingleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 50),
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
       child: Row(
         // 左ペイン
         children: [
@@ -17,7 +17,7 @@ class TeamSingleScreen extends StatelessWidget {
             children: [
               Container(
                 // margin: EdgeInsets.only(right: 10),
-                padding: EdgeInsets.all(30),
+                padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   shape: BoxShape.circle,
