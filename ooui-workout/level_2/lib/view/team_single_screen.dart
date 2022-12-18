@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:level_2/member_collection_screen.dart';
+import 'package:level_2/view/member_collection_screen.dart';
 
 class TeamSingleScreen extends StatelessWidget {
   const TeamSingleScreen({super.key});
