@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:level_2/view/components/navigation_bar.dart';
-import 'package:level_2/view/team_single_screen.dart';
+import 'package:level_2/views/components/navigation_bar.dart';
+import 'package:level_2/views/team_single_screen.dart';
 
 void main() {
   runApp(const MyApp());
