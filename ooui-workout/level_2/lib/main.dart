@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:level_2/components/navigation_bar.dart';
-import 'package:level_2/member_collection_screen.dart';
-import 'package:level_2/team_collection_screen.dart';
 import 'package:level_2/team_single_screen.dart';
 
 void main() {
