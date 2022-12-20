@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:level_2/views/layouts/base.dart';
 
 class MemberCollectionScreen extends StatelessWidget {
+  static const routePath = '/members';
   const MemberCollectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topLeft,
-      padding: const EdgeInsets.symmetric(
-        vertical: 30,
-        horizontal: 80,
-      ),
-      child: ListView(
-        children: [
-          Row(
-            children: [
-              const Text(
-                '社員',
-                style: TextStyle(fontSize: 30),
-              ),
-              Spacer(),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-              )
-            ],
-          ),
-          MemberList(),
-        ],
+    return AppView(
+      child: Container(
+        alignment: Alignment.topLeft,
+        padding: const EdgeInsets.symmetric(
+          vertical: 30,
+          horizontal: 80,
+        ),
+        child: ListView(
+          children: [
+            Row(
+              children: [
+                const Text(
+                  '社員',
+                  style: TextStyle(fontSize: 30),
+                ),
+                Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.add),
+                )
+              ],
+            ),
+            MemberList(),
+          ],
+        ),
       ),
     );
   }
